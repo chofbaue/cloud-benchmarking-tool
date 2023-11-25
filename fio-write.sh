@@ -9,7 +9,7 @@ fi
 output="$1"
 config_file="fio_test.conf"
 test_file="$(egrep 'filename=[^ ]+' $config_file | cut -d'=' -f2)"
-iterations=10
+iterations=30
 
 # Perform testing
 for ((i = 1; i <= iterations; i++)); do
@@ -46,6 +46,6 @@ for ((i = 1; i <= iterations; i++)); do
     echo "iopsStddev $iops_stddev" >> "$output"
 done
 
-# Clean up test fileecho
+# Clean up test file
 echo "Removing \"$test_file\""
 rm "$test_file"
