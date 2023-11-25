@@ -12,7 +12,7 @@ sudo apt install speedtest-cli
 
 
 # Respective output files
-session_output="$(date +"%Y-%m-%d_%H:%M:%S")"
+session_output="$(date +"Session-%Y-%m-%d_%H:%M:%S")"
 read_output="read_output.txt"
 write_output="write_output.txt"
 network_output="net_results.txt"
