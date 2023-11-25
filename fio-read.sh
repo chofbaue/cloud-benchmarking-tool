@@ -22,7 +22,7 @@ for ((i = 1; i <= iterations; i++)); do
 	t=$(echo $raw | jq '.jobs[0].read')
 
 	# Parse JSON into latency (in ns) and IOPS statistics
-	lat_ns=$(echo $t | jq '.lat_ns')
+	lat_ns=$(echo $t | jq '.lat_ns.mean')
 	iops_min=$(echo $t | jq '.iops_min')
 	iops_max=$(echo $t | jq '.iops_max')
 	iops_mean=$(echo $t | jq '.iops_mean')
