@@ -11,6 +11,7 @@ iterations=30
 output="$1"
 
 for ((i = 1; i < iterations; i++)); do
+    echo "Testing iteration $i/$iterations..."
     echo "=== Iteration $i ===" >> "$output"
 
     speedtest-cli --simple >> "$output";
