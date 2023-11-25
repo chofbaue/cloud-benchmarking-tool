@@ -1,0 +1,14 @@
+TODO's
+
+    - Disk Read
+        - Need to implement
+    - Disk Write
+        - Implemented command
+        - Need to figure out which output components are the most useful
+    - Network
+        - Already implemented (averages on ping, U, D)
+        - (Maybe need to implement standard deviations)
+
+In the Future:
+        - Get environments ready (AWS, Azure, GCP)
+        - Polish script such that it can work anywhere (AWS, Azure, GCP)
