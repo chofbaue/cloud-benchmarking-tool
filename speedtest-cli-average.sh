@@ -12,6 +12,9 @@ ping_sum=0
 download_sum=0
 upload_sum=0
 count=0
+average_ping=0
+average_download=0
+average_upload=0
 
 LC_NUMERIC="C"
 
@@ -22,7 +25,8 @@ while IFS= read -r line; do
         ping_sum=$(awk "BEGIN {printf \"%.2f\", $ping_sum + $ping_speed}")
     elif [[ $line == *"Download"* ]]; then
         # Extract the download speed (in Mbps) from the line
-        download_speed=$(echo "$line" | grep -oP '[0-9.]+' | sed 's/.$//')
+        #download_speed=$(echo "$line" | grep -oP '[0-9.]+' | sed 's/.$//')
+        download_speed=$(echo "$line" | grep -oP '[0-9.]+')
         download_sum=$(awk "BEGIN {printf \"%.2f\", $download_sum + $download_speed}")
     elif [[ $line == *"Upload"* ]]; then
         # Extract the upload speed (in Mbps) from the line
@@ -33,12 +37,13 @@ while IFS= read -r line; do
 done < "$input_file"
 
 # Calculate averages
-average_ping=$(awk "BEGIN {printf \"%.2f\", $ping_sum / $count}")
-average_download=$(awk "BEGIN {printf \"%.2f\", $download_sum / $count}")
-average_upload=$(awk "BEGIN {printf \"%.2f\", $upload_sum / $count}")
+if [ $count -ne 0 ]; then
+    average_ping=$(awk "BEGIN {printf \"%.2f\", $ping_sum / $count}")
+    average_download=$(awk "BEGIN {printf \"%.2f\", $download_sum / $count}")
+    average_upload=$(awk "BEGIN {printf \"%.2f\", $upload_sum / $count}")
+fi
 
 # Print the averages
-echo
 echo "    Average Ping: $average_ping ms"
 echo "    Average Download Speed: $average_download Mbps"
 echo "    Average Upload Speed: $average_upload Mbps"

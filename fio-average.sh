@@ -12,6 +12,7 @@ latencyMean=0
 latencyN=0
 iopsMin=-1
 iopsMax=-1
+iopsMean=0
 iopsSum=0
 iopsN=0
 iopsStddev=0
@@ -78,9 +79,14 @@ done < "$input_file"
 
 # Calculate final means
 latencyMeans=$(awk "BEGIN {printf \"%.2f\", $latencyMean / $latencyN}")
-iopsMean=$(awk "BEGIN {printf \"%.2f\", $iopsSum / $iopsN}")
 iopsStddev=$(awk "BEGIN {printf \"%.2f\", $iopsStddev / $iterations}")
 iopsStddev=$(echo "sqrt($iopsStddev)" | bc)
+
+if [ $iopsN -ne 0 ]; then
+    iopsMean=$(awk "BEGIN {printf \"%.2f\", $iopsSum / $iopsN}")
+else
+    iopsMean=0
+fi
 
 # Print the results
 echo "    Average latency: $latencyMean ns"
