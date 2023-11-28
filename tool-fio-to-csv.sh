@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$#" -ne 3 ]; then
-    echo "Usage: $0 <[READ,WRITE]> <input_file> <cloud_provider>"
+    echo "Usage: $0 <input_file> <cloud_provider> <[READ,WRITE]>"
     exit 1
 fi
 
