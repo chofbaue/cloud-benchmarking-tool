@@ -1,19 +1,33 @@
 #!/bin/bash
 
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <input_file> <cloud_provider>"
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 <[READ,WRITE]> <input_file> <cloud_provider>"
     exit 1
 fi
 
 # Input file
 input_file="$1"
 method="$2"
+operation=""
 
-latencyMeanValuesOutput="latencyMeanValues.txt"
-iopsMinValuesOutput="iopsMinValues.txt"
-iopsMaxValuesOutput="iopsMaxValues.txt"
-iopsMeanValuesOutput="iopsMeanValues.txt"
-iopsStddevValuesOutput="iopsStddevValues.txt"
+if [ "$3" == "READ" ]; then
+   operation="fio_read_"
+fi
+
+if [ "$3" == "WRITE" ]; then
+    operation="fio_write_"
+fi
+
+if ["$operation" == ""]; then
+    echo "$0: Unknown operation: Operation is either \"READ\" or \"WRITE\""
+    exit 1
+fi
+
+latencyMeanValuesOutput="$operation\latencyMeanValues.txt"
+iopsMinValuesOutput="$operation\iopsMinValues.txt"
+iopsMaxValuesOutput="$operation\iopsMaxValues.txt"
+iopsMeanValuesOutput="$operation\iopsMeanValues.txt"
+iopsStddevValuesOutput="$operation\iopsStddevValues.txt"
 
 rm -f "$latencyMeanValuesOutput"
 rm -f "$iopsMinValuesOutput"
