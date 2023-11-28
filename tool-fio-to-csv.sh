@@ -23,11 +23,11 @@ if [ "$operation" == "" ]; then
     exit 1
 fi
 
-latencyMeanValuesOutput="$operation\latencyMeanValues.txt"
-iopsMinValuesOutput="$operation\iopsMinValues.txt"
-iopsMaxValuesOutput="$operation\iopsMaxValues.txt"
-iopsMeanValuesOutput="$operation\iopsMeanValues.txt"
-iopsStddevValuesOutput="$operation\iopsStddevValues.txt"
+latencyMeanValuesOutput=$operation\latencyMeanValues.txt
+iopsMinValuesOutput=$operation\iopsMinValues.txt
+iopsMaxValuesOutput=$operation\iopsMaxValues.txt
+iopsMeanValuesOutput=$operation\iopsMeanValues.txt
+iopsStddevValuesOutput=$operation\iopsStddevValues.txt
 
 rm -f "$latencyMeanValuesOutput"
 rm -f "$iopsMinValuesOutput"
