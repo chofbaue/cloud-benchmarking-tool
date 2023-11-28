@@ -18,7 +18,7 @@ if [ "$3" == "WRITE" ]; then
     operation="fio_write_"
 fi
 
-if ["$operation" == ""]; then
+if [ "$operation" == "" ]; then
     echo "$0: Unknown operation: Operation is either \"READ\" or \"WRITE\""
     exit 1
 fi
